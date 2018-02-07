@@ -1,0 +1,148 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_posts.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='padding-container-regular'>
+        <table class='bordered padded-small' style='width:85%'>
+            <thead>
+            <tr>
+                <th id="post_headline">Post Headline</th>
+                <th id="post_text_th">Post Text</th>
+                <th id="posted_by_th">Posted By</th>
+                <th id="view_details_th"> View Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+            <tr class="post">
+                <td>
+                    <p>
+                        {{post.post_headline}}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {{post.post_text}} <br>
+                         {% if post.post_url %}
+                        <a href="{{post.post_url}}" target="_blank"> {{post.post_url}} </a>
+                        {% endif %}
+                    </p>
+                </td>
+                <td class="posted_by">
+                    {% if post.posting_startup %}
+                    {{ post.posting_startup.name_of_startup}}
+                    {% else %}
+                    {{ post.poster.first_name}} {{ post.poster.last_name }}
+                    {% endif %}
+                </td>
+                <td>
+                    <i class="fa fa-bars" aria-hidden="true" data-toggle="modal" data-target="#myModal{{post.id}}"></i>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal{{post.id}}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h2 class="modal-title" id="myModalLabel">{{post.post_headline}}</h2>
+                                </div>
+                                <div class="modal-body">
+
+                                 <span class="PostText_modal">
+                                  <strong> Post Text:</strong><br>
+                                  {{post.post_text}}
+                                 </span><br>
+                                    {% if post.post_image %}
+                                    <span class="PostUrl_modal">
+                                      <strong>Post Image : </strong><br>
+                                      <img src="{{post.post_image}}" width="100px" height="100px">
+                                    </span><br>
+                                    {% endif %}
+                                    {% if post.post_url %}
+                                    <span class="PostUrl_modal">
+                                      <strong>Post URL : </strong><br>
+                                      <a href="{{post.post_url}}" target="_blank">{{post.post_url}}</a>
+                                    </span><br>
+                                    {% endif %}
+                                    {% if post.posting_startup %}
+                                    <span class="PostedBy_modal">
+                                      <strong>Posted By : </strong><br>
+                                      {{ post.posting_startup.name_of_startup}}
+                                    </span><br>
+                                    {% else %}
+                                    <span class="PostedBy_modal">
+                                      <strong>Posted By : </strong><br>
+                                       {{ post.poster.first_name}} {{ post.poster.last_name }}
+                                    </span><br>
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+
+<div class="footer">
+    <div>
+   <span class="goto_page">
+    <p>
+      Go to page
+    </p>
+    <input type="number" id="go_to_page_no">
+    <input type="submit" value="Go" id="go_to_button">
+  </span>
+    </div>
+
+
+    {% if prev %}
+    <span class="arrow-left">
+ <a href="/dashboard/posts/{{prev}}" class="prev-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</span>
+    {% endif%}
+
+    {% if next%}
+    <span class="arrow-right">
+  <a href="/dashboard/posts/{{next}}" class="next_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</span>
+    {% endif %}
+</div>
+
+{% endblock footer %}
+
+{% block script %}
+
+<script type="text/javascript">
+  $('#go_to_button').click(function(e){
+    var $page_no = $('#go_to_page_no').val();
+    console.log($page_no);
+    var url = '/dashboard/posts/' +  $page_no;
+    console.log(url);
+    console.log($('#go_to_page_no').val());
+    $(location).attr('href', url);
+  });
+
+</script>
+{% endblock script %}
+

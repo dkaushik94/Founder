@@ -1,0 +1,178 @@
+.container
+{
+    width: 85% !important;
+    margin: 5% auto;
+}
+
+  #add_new_trending_startup
+{
+    font-family : Forza,Lato !important;
+    font-size: 20px;
+    color: black;
+    width: 500px !important;
+
+
+}
+
+.ui-menu-item
+{   width: 200px !important;
+    padding: 10px !important;
+    color: black ;
+    font-family : Forza,Lato !important;
+    background-color: #eee !important;
+    margin: 1px 0 !important;
+    /*border : 1px solid black !important;
+    */
+}
+
+#trending_reason_div
+{
+    margin: 50px 10px;
+
+}
+
+.nav li:hover
+{
+    background-color: transparent !important;
+}
+.ui-menu-item:hover,
+{
+    font-family : Forza,Lato !important;
+    background-color: #eee !important;
+    box-sizing : none !important;
+}
+
+.ui-menu,  .ui-widget-content, .ui-autocomplete, .ui-front,
+.ui-menu:hover,  .ui-widget-content:hover, .ui-autocomplete:hover, .ui-front:hover
+{
+background-color: transparent !important;
+font-size : 16px;
+}
+
+
+li
+{
+    list-style-type: none !important;
+}
+
+.ui-menu-item-wrapper, .ui-menu-item-wrapper:hover
+{
+    color: black;
+    background: transparent !important;
+    font-size: 20px;
+}
+
+.ui-helper-hidden-accessible, ui-helper-hidden-accessible:hover
+{
+}
+
+
+h3
+{
+    font-family : Forza,Lato !important;
+    margin: 0 4rem 3rem 5rem;
+    width: 500px;
+}
+
+
+#add_to_trending_button, #publish
+{   width: 10rem;
+    background-color: #304574;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 18px !important;
+    outline: none;
+    color: white;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-family : Forza,Lato;
+    font-weight: 700;
+    font-size: 10px;
+
+}
+
+
+
+
+li:hover
+{
+    background-color: #eee !important;
+}
+
+.fa
+{
+    margin-left: 3rem;
+}
+
+
+#untrending_startups_input
+{
+    width: 200px;
+    font-family : Forza,Lato !important;
+    font-size: 16px;
+
+}
+.ui-helper-hidden-accessible
+{
+    display: none !important;
+
+}
+.startup_name
+{
+    display: inline-block;
+    width: 200px !important;
+}
+
+.remove_startup
+{
+    background-color: transparent !important;
+}
+.footer
+{
+    margin-top: 10%;
+    height: 100px;
+}
+#sortable1, #sortable2
+{
+    float: left;
+    margin : 0 5%;
+    padding: 5px;
+    width: 35%;
+
+}
+
+#sortable2
+{
+    margin-top: 5rem;
+}
+#sortable1
+{
+    list-style-type: none !important;
+}
+#sortable2
+{
+    list-style-type: decimal;
+}
+
+#sortable1 li, #sortable2 li
+{
+    border : none;
+    margin: 10px 0 10px 25px;
+    padding: 5px;
+    font-size: 1.5em;
+    width: 85%;
+    text-align: center;
+}
+
+
+.ui-state-default
+{
+    background-color: #eee;
+    margin: 5px 0;
+}
+
+.trending_reason
+{
+    display: block;
+}

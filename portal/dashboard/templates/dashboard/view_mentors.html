@@ -1,0 +1,171 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_mentors.css'%}">
+<script type="text/javascript" src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+  <div class='padding-container-regular'>
+    <table class='bordered padded-small' style='width:85%'>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Mentor Name</th>
+          <th>Social Links</th>
+          <th>Company Name</th>
+          <th>Past Experience</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for mentor  in mentors %}
+        <tr class="startup">
+		<td>
+				   <a href="" data-toggle="modal" data-target="#myModal{{mentor.id}}">
+				     <img src="{{mentor.image}}" width="50px" height="50px">
+				   </a>
+				   <!-- Modal -->
+				   <div class="modal fade" id="myModal{{mentor.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				    <div class="modal-dialog" role="document">
+				      <div class="modal-content">
+
+				        <div class="modal-body">
+				          <img src="{{mentor.image}}" width="500px" height="500px">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+        </td>
+        <td class="name_of_mentor">
+          			<span>{{mentor.first_name}} {{mentor.last_name}}</span>
+        </td>
+		<td>
+				    <span class="social-icons">
+				     <a href="{{mentor.facebook_url}}"  target="_blank">
+				       <i class="fa fa-facebook-official" aria-hidden="true"></i>
+				     </a>
+				     <a href="{{mentor.linkedin_url}}" target="_blank">
+				       <i class="fa fa-linkedin" aria-hidden="true"></i>
+				     </a>
+				     <a href="{{mentor.twitter_handle}}" target="_blank">
+				       <i class="fa fa-twitter" aria-hidden="true"></i>
+				     </a>
+				   </span>
+		</td>
+		<td>
+                <span>{{mentor.company_name}}</span>
+        </td>
+        <td>
+                <pre>{{mentor.past_experience}}</pre>
+		</td>
+
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+
+</div>
+</div>
+{% endblock content %}
+
+
+{% block footer %}
+
+{{ block.super }}
+
+
+<div class="footer">
+  <div>
+   <span class="goto_page">
+    <p>
+      Go to page
+    </p>
+    <input type="number" id="go_to_page_no">
+    <input type="submit" value="Go" id="go_to_button">
+  </span>
+</div>
+
+
+{% if prev %}
+<span class="arrow-left">
+ <a href="/dashboard/mentors/{{prev}}" class="prev-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</span>
+{% endif%}
+
+{% if next%}
+<span class="arrow-right">
+  <a href="/dashboard/mentors/{{next}}" class="next_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</span>
+{% endif %}
+</div>
+
+{% endblock footer %}
+
+
+
+{% block script %}
+
+</script>
+
+<script type="text/javascript">
+  $('#go_to_button').click(function(e){
+    var $page_no = $('#go_to_page_no').val();
+    console.log($page_no);
+    var url = '/dashboard/mentors/' +  $page_no;
+    console.log(url);
+    console.log($('#go_to_page_no').val());
+    $(location).attr('href', url);
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $('.image-popup-vertical-fit').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      mainClass: 'mfp-img-mobile',
+      image: {
+        verticalFit: true
+      }
+
+    });
+
+    $('.image-popup-fit-width').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      image: {
+        verticalFit: false
+      }
+    });
+
+    $('.image-popup-no-margins').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      closeBtnInside: false,
+      fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300 // don't foget to change the duration also in CSS
+    }
+  });
+
+  });
+</script>
+
+{% endblock script %}
+

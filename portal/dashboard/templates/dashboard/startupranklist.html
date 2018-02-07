@@ -1,0 +1,251 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+{% block title %} <title> Startup Ranklist</title>{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/startuprank.css' %}">
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
+{% endblock head %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row" id="sortable-columns">
+
+        <ul id="sortable1" class="droptrue connectedSortable unranked ">
+            <h3>
+                Add New Trending Startups
+            </h3>
+            <div class="ui-widget col-md-5 startups" id="add_new_trending_startup">
+                <label>Startups: </label>
+                <input type="text" id="untrending_startups_input" >
+
+                <button id="add_to_trending_button">Add</button>
+                <div id="trending_reason_div">
+                    Trending Reason : <br>
+                    <textarea  rows ="5" cols="30" id="trending_reason_input"> </textarea>
+                </div>
+            </div>
+        </ul>
+
+
+        <ul id="sortable2" class="droptrue connectedSortable ranked">
+            {%for startup in ranked_startups %}
+            <li class="ui-state-default ranked-trending">
+                <p class="para" id = "{{startup.name_of_startup}}">
+                    <span class="startup_name">{{startup.name_of_startup}}
+                        <span class="trending_reason" id="{{startup.name_of_startup}}_trending_reason">{{startup.trending_reason}}</span>
+                    </span>
+
+                    <button class="remove_startup fa fa-times" id="{{startup.name_of_startup}}_remove_button"
+                            onclick="removestartup(id)" ></button>
+                </p>
+            </li>
+            {%endfor%}
+        </ul>
+
+
+
+        <div class="modal fade" id="publishmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <h2>Ranklist has been Published</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+    <div class="footer">
+        <button id="publish" class="btn btn-default">Publish</button>
+    </div>
+
+
+
+</div>
+
+{% endblock content%}
+
+{% block script %}
+
+<script type="text/javascript">
+
+var availablestartups = [];
+var ranked = [];
+var unranked = [];
+
+
+$(function() {
+
+   var untrending_startups = {{untrending_startups|safe}};
+   var x = untrending_startups.length
+
+   for(i=0;i<x;i++){
+    availablestartups.push(untrending_startups[i]);
+  }
+
+  $( "#untrending_startups_input" ).autocomplete({
+    source: availablestartups
+  });
+} );
+
+
+function removestartup(id){
+
+      var elem = $('#'+id);
+
+      elem.parent().parent().remove();
+      unranked.push(id);
+      availablestartups.push(id.split('_')[0]);
+
+    }
+
+ $('#add_to_trending_button').click(function(e){
+  $button =  $('#add_to_trending_button');
+
+  var $startup_name = $button.prev().val();
+    var $text = $startup_name  + $('#trending_reason_input').val()
+  $('#sortable2').append(
+    $('<li>').attr({
+      class: 'ui-state-default',
+    }).append(
+    $('<p>').attr({
+      class:'para',
+      id: $startup_name
+    }).append(
+    $('<span>').text($startup_name).attr({
+    class:'startup_name',
+    id : $startup_name + '_trending_reason'
+    }).append(
+    $('<span>').text($('#trending_reason_input').val()).attr('class','trending_reason')
+    )).append(
+    $('<button>').attr({
+      class: 'remove_startup fa fa-times',
+      id: $startup_name + '_remove_button',
+      onclick   : 'removestartup(id)'
+    })
+    ))
+    );
+    $('#untrending_startups_input').val('') ;
+    $('#trending_reason_input').val('');
+
+    var index = availablestartups.indexOf($startup_name);
+    availablestartups.splice(index, 1 );
+});
+
+$( function() {
+    $( "ul.droptrue" ).sortable({
+    connectWith: "ul"
+    });
+
+$( "ul.dropfalse" ).sortable({
+    connectWith: "ul",
+    dropOnEmpty: false
+
+});
+
+$( "#sortable1, #sortable2 ").disableSelection();
+} );
+
+
+//AJAX call for publishing.
+
+$("#publish").click(function(){
+
+
+
+var array = $('.trending_reason');
+var trending_reasons = []
+    for(var i=0;i<array.length;i++)
+    {
+            trending_reasons.push(array[i].innerHTML);
+    }
+
+var unranked_children = $("#sortable1").children();
+for(var i = 0 ; i < unranked_children.length ; i++)
+    {
+        var para = "";
+        para = unranked_children[i];
+        unranked[i] = $(para).find('p').attr("id");
+    }
+
+var ranked_children = $("#sortable2").children();
+    for(var i = 0 ; i < ranked_children.length ; i++)
+    {
+        var para = "";
+        para = ranked_children[i];
+        ranked[i] = $(para).find('p').attr("id");
+    }
+
+var queryset = {'ranked' : ranked, 'unranked': availablestartups , 'trending_reasons' : trending_reasons };
+    $.ajax({
+        traditional : true,
+        async       : true,
+        type        : 'POST',
+        url         : '/dashboard/startupranklist/',
+        datatype    : 'json',
+        data        : queryset,
+        success     : function(){
+        $('#publishmodal').modal('show')
+        },
+        error   : function(response){
+        alert("An Error Occurred. Please report this.");
+        },
+    });
+});
+</script>
+
+
+
+<script type="text/javascript">
+
+
+
+</script>
+
+<!--<script type="text/javascript">-->
+<!--//AJAX call for publishing.-->
+
+<!--var ranked = [];-->
+<!--var unranked = [];-->
+
+
+<!--$("#save").click(function(){-->
+
+<!--console.log( $("#sortable2").children())-->
+
+<!--var ranked_children = $("#sortable2").children();-->
+<!--for(var i = 1 ; i < ranked_children.length ; i++)-->
+<!--{-->
+<!--var para = "";-->
+<!--para = ranked_children[i];-->
+<!--ranked[i] = $(para).find('p').attr("id");-->
+<!--}-->
+<!--console.log(ranked)-->
+<!--var queryset = {'ranked' : ranked, 'unranked': unranked};-->
+<!--$.ajax({-->
+<!--traditional : true,-->
+<!--async       : true,-->
+<!--type        : 'POST',-->
+<!--url         : '/dashboard/trendinglist',-->
+<!--datatype    : 'json',-->
+<!--data        : queryset,-->
+<!--success     : function(){-->
+<!--alert("Trending Startups have been set ");-->
+<!--},-->
+<!--error   : function(response){-->
+<!--alert("An Error Occurred. Please report this.");-->
+<!--},-->
+<!--});-->
+<!--});-->
+<!--</script>-->
+{% endblock script %}
+
+
+

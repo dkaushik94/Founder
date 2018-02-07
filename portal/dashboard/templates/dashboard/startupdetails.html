@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <title>Startup Detail</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/startupdetails.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <span class="navbar-brand">
+            Founder
+          </span>
+          <span class="navbar-text navbar-right">
+            <span class="welcome_name">
+              Welcome {{user.first_name}}
+            </span>
+            <a href="/dashboard/logout" class="navbar-link">Logout</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="row">
+
+      <div class="tabs">
+        <ul class="nav nav-tabs">
+        <li role="presentation" ><a href="/dashboard">Dashboard</a></li>
+          <li role="presentation"  class="active"><a href="/dashboard/startups">Startups</a></li>
+          <li role="presentation"><a href="/dashboard/startuprequests">Startup Requests</a></li>
+          <li role="presentation"><a href="/dashboard/startupranklist">Set Rank List</a></li>
+          <li role="presentation"><a href="#">Set Startup Trending </a></li>
+          <li role="presentation"><a href="#">Add Startup</a></li>
+          <li role="presentation"><a href="#">Add Founders</a></li>
+          <li role="presentation"><a href="/dashboard/addevent">Add Event</a></li>
+        </ul>    
+      </div>           
+    </div>
+
+    <div class="row" id="details">
+
+      <div id="startup_details">
+        <div class="startup_name">
+
+          <h2>
+            {{startup.name_of_startup}}
+          </h2> 
+          <span class="social-icons">
+           <a href="{{startup.facebook_url}}" class="fa fa-facebook-official" aria-hidden="true"></a>
+           <a href="{{startup.linkedin_url}}" class="fa fa-linkedin" aria-hidden="true"></a>
+           <a href="{{startup.twitter_handle}}" class="fa fa-twitter" aria-hidden="true"></a>
+         </span>
+
+       </div>
+       <div class="startup_image">
+        <img id ="startup_logo" src="{{startup.startup_logo}}">
+      </div>
+
+      <div class="startup_desccription">
+        <p>
+          {{startup.description}}
+        </p>
+      </div>
+    </div>
+
+    <div id="founder_details">
+
+      <h3>
+        Founders
+      </h3>
+      {% for founder in cofounders %}
+      <div class="founder_info">
+        <h5>
+          {{founder.first_name}} {{founder.last_name}}
+        </h5>
+        <span class="social-icons">
+          <a href="{{founder.facebook_url}}" class="fa fa-facebook-official" aria-hidden="true"></a>
+          <a href="{{founder.linkedin_url}}" class="fa fa-linkedin" aria-hidden="true"></a>
+          <a href="{{founder.twitter_handle}}" class="fa fa-twitter" aria-hidden="true"></a>
+        </span>
+        <span class="founder_image">
+          <img src="{{founder.image}}">
+        </span>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <div id="startup_approval">
+
+      {% if  not startup.approval_status %}
+      <a class="btn btn-default" href="/dashboard/startup_approved/{{startup.name_of_startup}}">
+        Approve startup</a>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

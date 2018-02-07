@@ -1,0 +1,119 @@
+body
+{
+    font-family : MuseoSans;
+}
+
+a, a:hover
+{
+    text-decoration: none !important;
+    color: black;
+   
+}
+li :hover
+{
+     background-color: transparent !important;
+}
+
+.social-icons a
+{
+    display: inline-block;
+
+}
+
+.fa
+{
+    padding: 2px;
+    font-size: 20px;
+}
+
+.image
+{
+    height: 30px;
+    width: 30px;
+}
+th
+{
+    font-size : 22px;
+
+}
+.name_of_startup
+{
+    font-size: 20px !important;
+    font-weight: 300 !important;
+    font-family: MuseoSans;
+}
+
+
+.founder_details 
+{
+    padding: 5px;
+    margin: 10px 0;
+}
+.founder_details  span
+{
+    font-size: 18px;
+    margin: 5px 0
+}
+
+.footer 
+{
+    height: 100px;
+    margin-left: 10%;
+    width: 80%
+}
+
+.arrow-left,  .arrow-right
+{
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.fa
+{
+    font-size: 20px;
+}
+
+.arrow-right
+{
+    float: right;
+}
+.arrow_left
+{
+    float: left;
+}
+
+.goto_page p
+{
+    display: inline-block;
+
+}
+
+.goto_page
+ {
+    display: inline-block;
+    margin: 0 30%;
+ }
+
+.mfp-no-margins img.mfp-img {
+    padding: 0;
+}
+/* position of shadow behind the image */
+.mfp-no-margins .mfp-figure:after {
+    top: 0;
+    bottom: 0;
+}
+/* padding for main container */
+.mfp-no-margins .mfp-container {
+    padding: 0;
+}
+.mfp-img
+
+{
+    min-height:600px !important;
+
+}
+
+.fa-bars
+{
+    cursor: pointer;
+
+}

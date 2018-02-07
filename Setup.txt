@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "What do you want to call your Project as?"        #Obtain name of project from user.
+read project_name
+
+django-admin startproject $project_name                 #Initialise Project.   
+echo -e "Django project initialised! Please ensure you have already installed pymysql driver and MySQL client.\nIf you have not, then press Ctrl+C to cancel the process and install them first.\nNow proceeding with Environment setup."
+
+cd $project_name 
+cd $project_name                                       #Navigate to base directory.
+ls
+
+echo "import pymysql">>__init__.py
+echo "pymysql.install_as_MySQLdb()">>__init__.py
+
+echo "Please enter the name of your database:"          #Obtain name of database from user.
+read name_of_db;  
+echo "Enter your database password:"
+read -s password
+
+mysql -u root -p$password -Bse "Create database $name_of_db;"        #Creating database.
+echo "Creating database....created."
+
+sleep 3s
+  				
+sed -i "s|sqlite3|mysql|g" settings.py 				#Edit settings.py for changing database rules and Timezone.
+sed -i "s|os.path.join(BASE_DIR, 'db.mysql')|'$name_of_db'|g" settings.py
+sed -i "s|'NAME': '$name_of_db',|'NAME': '$name_of_db',\n        'USER':'root',\n        'PASSWORD':'$password',\n        'HOST':'localhost',\n        'PORT':3306|g" settings.py
+sed -i "s|UTC|Asia/Kolkata|g" settings.py
+
+sleep 3s
+cd ..
+
+echo "Starting initial Migrations.."
+python3 manage.py migrate					#Migrations. To create initial tables..
+
+sleep 2s
+
+echo "Now creating superuser:"
+python3 manage.py createsuperuser
+
+echo "Now running server. To exit please press Ctrl+C. This will stop the server."
+python3 manage.py runserver
+
+
+

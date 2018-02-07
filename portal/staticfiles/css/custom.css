@@ -1,0 +1,61 @@
+/****** PLACE YOUR CUSTOM STYLES HERE ******/
+
+.branding-gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f77f01+0,f73d3a+100 */
+  background: #f77f01 !important; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #f77f01 0%, #f73d3a 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #f77f01 0%,#f73d3a 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #f77f01 0%,#f73d3a 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f77f01', endColorstr='#f73d3a',GradientType=1 ) !important; /* IE6-9 fallback on horizontal gradient */
+
+}
+.newsletter-background {
+  background: #E5E5E5;
+  padding-bottom: 0;
+}
+.newsletter-background iframe {
+  height: 48px;
+}
+.footer-links li {
+  display:inline-block;
+  margin:10px 15px;
+}
+.footer-links li a {
+  cursor:pointer;
+}
+
+h1.cover-headline, .h1.cover-headline {
+  font-size:24px;
+  font-family:"Museo-900","Raleway";
+}
+p.lead {
+  font-size:22px;
+  padding:30px 0;
+  font-family:"Museo-500","Raleway";
+}
+p.welcome {
+  font-size:22px;
+  padding:30px 0;
+  font-family:"Museo-500","Raleway";
+}
+.open-app-store-button {
+  background:#fff;
+  border-radius:3px;
+  border:none;
+
+}
+.open-app-store-button:hover {
+  background:#fff !important;
+  color:#f73d3a;
+
+}
+.sweatt-logo {
+  width:200px;
+  padding-bottom:20px;
+}
+.grow {
+  transition: all 300ms ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
+}

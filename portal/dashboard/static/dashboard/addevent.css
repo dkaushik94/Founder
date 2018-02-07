@@ -1,0 +1,174 @@
+
+a, a:hover
+{
+    text-decoration: none !important;
+    color: black;
+}
+
+.container
+{
+    background-color: grey;
+}
+
+.form
+{
+    background-color: white;
+    width: 85%;
+    height: 95%;
+    margin : 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 5px black;
+    border: 1px solid gray;
+}
+
+
+
+label
+{
+    display: inline-block !important;
+}
+.form-heading
+{
+    text-align: center;
+}
+
+form
+{
+    margin: 5% auto;
+
+}
+
+.form-element
+{
+    margin : 20px 7%;  
+}
+
+label
+{
+    
+    margin-bottom: 5px;
+}
+input[type="datetime-local" i]
+{
+    display:block;
+    width: 35% !important;
+    padding:10px !important;
+}
+input[type="datetime-local" i]:focus
+{
+    border: 0 !important;
+}
+
+input
+{   
+    
+    margin-top: 10px;
+    font-size: 18px;
+    width: 95% !important;
+    height: 35px !important;
+}
+
+input:focus
+{
+    border: 1px solid black !important;
+   
+}
+
+textarea
+{
+
+
+    font-size: 20px !important;
+    padding: 0px !important;
+    width: 95% !important;
+   
+}
+
+textarea:focus
+{
+    
+    color: black;
+    padding: 5px !important;
+    border: 1px solid black !important;
+}
+
+#id_public_url:focus
+{
+    outline: none;
+    border : 1px solid black !important;
+}
+
+#id_event_image:focus
+{
+    width: auto;
+    border: none !important;
+    padding: 0 !important;
+    outline: none !important;
+
+}
+
+
+
+select
+{
+    display: block;
+    width: 25%  !important;
+    padding: 8px 5px 5px 10px !important;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    background-color: white !important;
+    box-sizing: none !important;
+    border-radius: 2px !important;
+    font-size: 14px !important;
+    color: black !important;
+    border: 1px solid grey !important;
+
+}
+#save
+{
+   padding: 10px !important;
+   width: 25% !important;
+   height: 40px !important;
+   background-color: #1762ee;
+   color: white;
+   font-family : Forza,Lato;
+   font-size: 18px !important;
+}
+#save:focus
+{
+    border: 0 !important;
+
+}
+
+
+.errorlist
+{
+    color: red;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Add Image';
+  display: inline-block;
+  /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
+  /*border: 1px solid #999;*/
+  background-color: #1762ee;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 16px;
+  outline: none;
+  color: white;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-family : Forza,Lato;
+  /*text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10px;*/
+  
+
+}

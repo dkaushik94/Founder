@@ -1,0 +1,91 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_events.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class='container'>
+  <div class='padding-container-regular'>
+    <table class='bordered padded-small' style='width:85%'>
+      <thead>
+        <tr>
+          <th id="event_name_th">Name of Event</th>
+          <th id="event_description_th">Event Description</th>
+          <th id="event_hosted_by_th">Hosted By</th>
+          <th id="event_location">Event Location </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event  in events %}
+        <tr class="event">
+          <td class="name_of_event">
+            {{event.name_of_event}}
+          </td>
+          <td class="description">
+            <p>
+              {{event.description}}
+            </p>
+          </td>
+          <td class="hosted_by">
+            
+            <span> {{event.hosted_by}} </span>
+          </td>
+          <td class="location">
+            <span> {{event.location}} </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+
+<div class="footer">
+  <div>
+   <span class="goto_page">
+    <p>
+      Go to page
+    </p>   
+    <input type="number" id="go_to_page_no">
+    <input type="submit" value="Go" id="go_to_button">
+  </span>
+</div>
+
+
+{% if prev %}
+<span class="arrow-left">
+ <a href="/dashboard/events/{{prev}}" class="prev-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</span>
+{% endif%}
+
+{% if next%}
+<span class="arrow-right">
+  <a href="/dashboard/events/{{next}}" class="next_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</span>
+{% endif %}
+</div>
+
+{% endblock footer %}
+
+
+
+{% block script %}
+
+<script type="text/javascript">
+  $('#go_to_button').click(function(e){
+    var $page_no = $('#go_to_page_no').val();
+    console.log($page_no);
+    var url = '/dashboard/events/' +  $page_no;
+    console.log(url);
+    console.log($('#go_to_page_no').val());
+    $(location).attr('href', url);
+  });
+</script>
+{% endblock script %}
+

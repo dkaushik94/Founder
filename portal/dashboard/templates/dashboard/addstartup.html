@@ -1,0 +1,243 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+{% block title %}
+<title>Founder|Add Startup</title>
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/addstartup.css' %}">
+<script type="text/javascript" src="{% static 'js/jquery.geocomplete.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?&sensor=false&libraries=places"></script>
+<script type="text/javascript">
+
+
+  function handleFileSelect() {
+    var files = $('#id_startup_logo')[0].files;
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = 
+          [
+
+          '<img style="height: 75px;  margin: 5px" src="', 
+          e.target.result,
+          '" title="', escape(theFile.name), 
+          '"/>'
+          ].join('');
+          $('#list').show();
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+
+  $(function () { 
+    $("#id_location").geocomplete({
+      details: ".geo-details",
+      detailsAttribute: "data-geo"
+    });
+  });
+
+
+
+</script>
+{% endblock head %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='padding-container-regular'>
+
+        <div class="row">
+            <div class="row-md-12">
+                <h2 class="center font-prop" style="text-align:center;">
+                    ADD STARTUP
+                </h2>
+                <form enctype="multipart/form-data" method="POST" action="">
+                    {% csrf_token %}
+
+                    <div id="name_of_startup" class="row form-element">
+                        <label id="label_name_of_startup">Name of Startup</label><span class="required">*</span>
+                        <div class="input">
+                            <input type="text" id="id_name_of_startup" name="name_of_startup">
+                            <div class="errors">
+                                {{form.name_of_startup.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="startup_logo" class="row form-element">
+                        <label>Startup Logo</label><span class="required">*</span>
+                        <div>
+                            <input id="id_startup_logo" name="startup_logo" class="custom-file-input" type="file" onchange="handleFileSelect()">
+                            <output id="list"></output>
+                            <div class="errors">
+                                {{form.startup_logo.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="company_website" class="row form-element">
+                        <label>Company Website</label><span class="required">*</span>
+                        <div class="input">
+                            <input type="url" id="id_company_website" name="company_website" placeholder="Use protocol(http or https)">
+                            <div class="errors">
+                                {{form.company_website.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="linkedin" class="row form-element">
+                        <label>Linkedin Url</label>
+                        <div class="input">
+                            <input type="url" id="id_linkedin_url" name="linkedin_url" placeholder="Use https"/>
+                            <div class="errors">
+                                {{form.linkedin_url.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="facebook" class="row form-element">
+                        <label>Facebook Url</label>
+                        <div class="input">
+                            <input type="url" id="id_facebook_url" name="facebook_url" placeholder="Use https">
+                            <div class="errors">
+                                {{form.facebook_url.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="twitter" class="row form-element">
+                        <label>Twitter Handle</label>
+                        <div class="input">
+                            <input type="url" id="id_twitter_handle" name="twitter_handle" placeholder="Use https">
+                            <div class="errors">
+                                {{form.twitter_handle.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="description" class="row form-element">
+                        <label>Description</label> <span class="required">*</span>
+                        <div class="input">
+                            <textarea rows="5" id="id_description" name="description"></textarea>
+
+                            <div class="errors">
+                                {{form.description.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="location" class="row form-element">
+                        <label>Location</label> <span class="required">*</span>
+                        <div class="input">
+                            <input type="text" name="location" id="id_location">
+
+                            <div class="errors">
+                                {{form.location.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="inc_year" class="row form-element">
+                        <label>Inc Year</label>
+                        <div class="input">
+                            <input type="text" name="inc_year" id="id_inc_year">
+
+                            <div class="errors">
+                                {{form.inc_year.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="team_size" class="row form-element">
+                        <label>Team Size</label>
+                        <div class="input">
+                            {{form.team_size}}
+
+                            <div class="errors">
+                                {{form.team_size.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="type_of_trade" class="row form-element">
+
+                        <label>Type of Trade</label> <span class="required">*</span>
+                        <div class="input">
+                            {{form.type_of_trade}}
+
+                            <div class="errors">
+                                {{form.type_of_trade.errors}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="company_tagline" class="row form-element">
+                        <label>Company Tagline</label>
+                        <div class="input">
+                            <input type="text" name="company_tagline" id="id_company_tagline">
+                            <!-- <div class="errors">
+                                {{form.tagline.errors}}
+                              </div> -->
+                        </div>
+                    </div>
+
+                    <div class="row form-element">
+                        <input type="submit" value="Save" class="btn btn-submit center-block" id="save"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+{{block.super}}
+<script type="text/javascript">
+              $(function(){
+                $('#id_company_tagline').keyup(function(){
+
+                  var temp = $('#id_company_tagline').val();
+                  var temp = temp.split(' ');
+                  if (temp.length>5)
+                  {
+                    $('#tagline_error').show();
+
+                    setTimeout(function(){
+                      $('#id_company_tagline').focus();},1000);
+                  }
+                  if (temp.length<=5){
+                    $('#tagline_error').hide();
+                  }
+                });
+              });
+
+</script>
+<!--
+<script type="text/javascript">
+              $( "#id_facebook_url" ).val('https://' );
+              $( "#id_linkedin_url" ).val('https://' );
+              $( "#id_twitter_handle" ).val('https://' );
+              $( "#id_company_website" ).val('http://');
+            </script>-->
+
+
+{% endblock script %}
+

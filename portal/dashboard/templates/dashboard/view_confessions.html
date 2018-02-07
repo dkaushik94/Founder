@@ -1,0 +1,141 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_confessions.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='padding-container-regular'>
+        <table class='bordered padded-small' style='width:85%'>
+            <thead>
+            <tr>
+                <th id="confession_headline">Confession Headline</th>
+                <th id="confession_text_th">Confession Text</th>
+                <th id="confession_votes">Vote Count</th>
+                <!--<th id="view_details_th"> View Details</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            {% for confession in confessions %}
+            <tr class="confession">
+                <td>
+                    <p>
+                        {{confession.post_headline}}
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        {{confession.post_text}} <br>
+                         {% if confession.post_url %}
+                        <a href="{{confession.post_url}}" target="_blank"> {{confession.post_url}} </a>
+                        {% endif %}
+                    </p>
+                </td>
+                <td class="votes">
+                    <span>
+                        <strong>Upvotes</strong>
+                        {{confession.upvotes.count}}
+                    </span><br>
+                     <span>
+                        <strong>Downvotes</strong>
+                        {{confession.downvotes.count}}
+                    </span><br>
+                </td>
+                <!--<td>-->
+                    <!--<i class="fa fa-bars" aria-hidden="true" data-toggle="modal" data-target="#myModal{{confession.id}}"></i>-->
+                    <!--&lt;!&ndash; Modal &ndash;&gt;-->
+                    <!--<div class="modal fade" id="myModal{{confession.id}}" tabindex="-1" role="dialog"-->
+                         <!--aria-labelledby="myModalLabel">-->
+                        <!--<div class="modal-dialog" role="document">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span-->
+                                            <!--aria-hidden="true">&times;</span></button>-->
+                                    <!--<h2 class="modal-title" id="myModalLabel">{{confession.post_headline}}</h2>-->
+                                <!--</div>-->
+                                <!--<div class="modal-body">-->
+
+                                 <!--<span class="ConfessionText_modal">-->
+                                  <!--<strong> Confession Text:</strong><br>-->
+                                  <!--{{confession.post_text}}-->
+                                 <!--</span><br>-->
+                                    <!--{% if confession.post_image %}-->
+                                    <!--<span class="ConfessionImage_modal">-->
+                                      <!--<strong>Confession Image : </strong><br>-->
+                                      <!--<img src="{{confession.post_image}}" width="100px" height="100px">-->
+                                    <!--</span><br>-->
+                                    <!--{% endif %}-->
+                                    <!--{% if confession.ponfession_url %}-->
+                                    <!--<span class="ConfessionUrl_modal">-->
+                                      <!--<strong>Confession URL : </strong><br>-->
+                                      <!--<a href="{{confession.post_url}}" target="_blank">{{confession.post_url}}</a>-->
+                                    <!--</span><br>-->
+                                    <!--{% endif %}-->
+                                    <!---->
+                                    <!--<br>-->
+                                    <!--<br>-->
+                                    <!--<div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close-->
+                                        <!--</button>-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</td>-->
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+
+<div class="footer">
+    <div>
+   <span class="goto_page">
+    <p>
+      Go to page
+    </p>
+    <input type="number" id="go_to_page_no">
+    <input type="submit" value="Go" id="go_to_button">
+  </span>
+    </div>
+
+
+    {% if prev %}
+    <span class="arrow-left">
+ <a href="/dashboard/confessions/{{prev}}" class="prev-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</span>
+    {% endif%}
+
+    {% if next%}
+    <span class="arrow-right">
+  <a href="/dashboard/confessions/{{next}}" class="next_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</span>
+    {% endif %}
+</div>
+
+{% endblock footer %}
+
+{% block script %}
+
+<script type="text/javascript">
+  $('#go_to_button').click(function(e){
+    var $page_no = $('#go_to_page_no').val();
+    console.log($page_no);
+    var url = '/dashboard/confessions/' +  $page_no;
+    console.log(url);
+    console.log($('#go_to_page_no').val());
+    $(location).attr('href', url);
+  });
+
+</script>
+{% endblock script %}
+

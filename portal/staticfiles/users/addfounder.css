@@ -1,0 +1,219 @@
+.brand-logo
+{
+	margin: 15px 40px;
+	padding-bottom: 20px;
+}
+
+.submit
+{
+	margin: 10px;
+
+}
+
+body
+{
+	background-color: #f2f2f2;
+}
+.form
+{
+    background-color: white;
+    width: 95%;
+    height: 90%;
+    margin : 5% auto;
+    padding: 20px;
+
+    border: 1px solid gray;
+}
+
+form
+{
+    margin: 5% auto;
+
+}
+
+.form-heading
+{
+    text-align: center;
+}
+
+h2
+{
+    font-family : MuseoSans;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+    color: black;
+    display: block;
+}
+
+.img-header
+{
+    height: 100px;
+    width: 100px;
+    background: #304574;
+}
+
+.navbar-header
+{
+    height: 2em !important;
+}
+
+
+
+#firstName
+{
+	margin-top: 50px;
+}
+#add
+{
+	display: none;
+}
+
+.navbar-header
+{
+	height: 2em !important;
+}
+
+
+
+label
+{
+	color:black;
+    font-size: 16px !important;
+    font-family: Lato;
+}
+.form-element
+{
+    margin : 20px 7%;  
+}
+
+.form-element input
+{   
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 16px !important;
+    width: 95%;
+    padding: 10px;
+}
+
+.form-element input:focus
+{
+    border: 1px solid black;
+}
+
+#id_image:focus
+{
+	border: none !important;
+}
+
+#id_startup
+{
+    width: 20%  !important;
+    padding: 8px 5px 5px 10px !important;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    background-color: white !important;
+    box-sizing: none !important;
+    border-radius: 2px !important;
+    font-size: 14px !important;
+    color: black !important;
+    border: 1px solid grey !important;
+    height: 40px;
+
+}
+
+input
+{
+	outline: none !important;
+	
+}
+#id_image
+{
+	cursor: pointer;
+}
+#id_add_another_founder
+{
+	width: 50px !important;
+}
+
+
+.btn-submit
+{
+	width: 200px !important;
+}
+#add, #save
+{
+	
+    width: 250px; 
+    background-color: #304574;
+    font-family : Forza,Lato;
+    font-size: 20px;
+    color: white;
+}
+
+
+.errorlist li
+{
+    list-style-type: none;
+}
+.errorlist
+{
+
+    color: red
+}
+
+
+.footer
+{
+	height: 50px;
+}
+
+#list
+{
+    display: none;
+}
+input[type='file'] {
+  color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Add Image';
+  display: inline-block;
+  /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
+  /*border: 1px solid #999;*/
+  background-color: #304574;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 16px;
+  outline: none;
+  color: white;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-family : Forza,Lato;
+  /*text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10px;*/
+  
+
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+
+.required
+{
+
+    color:red;
+}
+
+textarea
+{
+    width: 95%;
+}

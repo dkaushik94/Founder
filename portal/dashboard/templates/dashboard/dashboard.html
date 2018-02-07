@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/dashboard.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">
+                        Founder
+                    </span>
+                    <span class="navbar-text navbar-right">
+                        <span class="welcome_name">
+                            Welcome {{user.first_name}}
+                        </span>
+                        <a href="/dashboard/logout" class="navbar-link">Logout</a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="/dashboard">Dashboard</a></li>
+                  <li role="presentation"><a href="/dashboard/startups">Startups</a></li>
+                  <li role="presentation"><a href="/dashboard/startuprequests">Startup Requests</a></li>
+                  <li role="presentation"><a href="/dashboard/startupranklist">Set Rank List</a></li>
+                  <li role="presentation"><a href="#">Set Startup Trending </a></li>
+                  <li role="presentation"><a href="#">Add Startup</a></li>
+                  <li role="presentation"><a href="#">Add Founders</a></li>
+                  <li role="presentation"><a href="/dashboard/addevent">Add Event</a></li>
+              </ul>    
+          </div>        
+      </div>
+  </div>
+</body>
+</html>

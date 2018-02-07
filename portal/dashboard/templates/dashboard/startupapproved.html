@@ -1,0 +1,23 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/startupdetails.css' %}">
+<script type="text/javascript" src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+
+    <h3>
+      The Startup {{startup.name_of_startup}} has been Approved and a mail has been sent to <br>
+      it's founders with username and invite_token
+    </h3>
+      
+    </div>
+{% endblock content %}
+
+
+
+

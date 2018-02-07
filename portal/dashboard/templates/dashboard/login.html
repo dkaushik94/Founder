@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>Dashboard Login</title>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{%static 'css/login.css'%}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand">
+                        Founders
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="row" id="content">
+            <div class="header">
+                <a href="">
+                   Founder Login
+                </a>
+            </div>
+
+            <form method="POST" id="login_form">
+                {% csrf_token %}
+               
+                <div class="form-row">
+                    <label for="id_username">Email:</label> <br>
+                    <input id="id_username" maxlength="50" name="username" type="email" />
+                </div>
+                <div class="form-row">
+                    <label for="id_password">Password:</label> <br>
+                    <input id="id_password" maxlength="10" name="password" type="password" />
+                </div>
+                {{form.errors}}
+                
+                <div class="form-submit">
+                    <input type="submit" value="Login"/>
+                </div>
+            </form>
+            
+        </div>
+
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</html>

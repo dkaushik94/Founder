@@ -1,0 +1,132 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+{% block title %} <title>AddEvent</title>{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/addevent.css' %}">
+<script type="text/javascript" src="{% static 'js/jquery.geocomplete.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?&sensor=false&libraries=places&key=AIzaSyCNrQsPssxdFOI8YCO7TwLnM0YTPasLW2k"></script>
+<script type="text/javascript">
+
+
+  function handleFileSelect() {
+    var files = $('#id_event_image')[0].files;
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = 
+          [
+
+          '<img style="height: 75px;  margin: 5px" src="', 
+          e.target.result,
+          '" title="', escape(theFile.name), 
+          '"/>'
+          ].join('');
+          $('#list').show();
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+
+  $(function () { 
+    $("#id_location").geocomplete({
+      details: ".geo-details",
+      detailsAttribute: "data-geo"
+    });
+  });
+
+
+</script>
+{% endblock head %}
+
+{% block content %}
+<div class='container'>
+    <div class='padding-container-regular'>
+
+        <div class="row">
+            <div class="row-md-12">
+                <h2 class="center font-prop" style="text-align:center;">
+                    ADD EVENT
+                </h2>
+                <form method="POST" action=""  enctype="multipart/form-data">
+          {% csrf_token %}
+          <div  class="form-element">
+            <label>Name of Event</label>
+            <input id="id_name_of_event" maxlength="200" name="name_of_event" type="text" />
+            {{form.name_of_event.errors}}
+          </div>
+          <div class="form-element">
+            <label>Hosted By </label>
+            {{form.hosted_by}}
+            {{form.hosted_by.errors}}
+          </div>
+          <div class="form-element">
+            <label>Description</label>
+            <textarea  id="id_description" name="description" rows="5">
+            </textarea>
+            {{form.description.errors}}
+          </div>
+          <div class="form-element">
+            <label>Location</label>
+            <input id="id_location" maxlength="100" name="location" type="text" />
+            {{form.location.errors}}
+          </div>
+          <div class="form-element">
+            <label>Start Date</label>
+            <input id="id_start_date" type="datetime-local" name="start_date"  step=1 />
+            {{form.start_date.errors}}
+
+          </div>
+          <div class="form-element">
+            <label>End Date</label>
+            <input id="id_end_date" type="datetime-local" name="end_date" step=1 />
+            {{form.end_date.errors}}
+          </div>
+          <div class="form-element">
+            <label>Image</label>
+            <input id="id_event_image"  class="custom-file-input" name="event_image" type="file"  onchange="handleFileSelect()">
+            <output id="list"></output>
+          </div>
+          {{form.event_image.errors}}
+          <div class="form-element">
+            <label>Public URL</label>
+            <input id="id_public_url" maxlength="500" name="public_url" type="url" />
+            {{form.publice_url.errors}}
+          </div>
+
+          <div class="form-element submit" >
+            <input type="submit" value="Save " class="btn btn-submit"  id="save"  />
+          </div>
+
+        </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+{{block.super}}
+{% endblock script %}
+

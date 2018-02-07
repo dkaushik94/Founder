@@ -1,0 +1,67 @@
+body
+{
+    background-color: #e6e6e6;
+}
+
+#content
+{
+    border: 1px #ccc solid;
+    height: 30rem;
+    width: 28em;
+    margin: 10rem auto 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.header
+{
+    padding: 20px 10px 10px 10px;
+    font-size: 2em;
+    text-align: center;
+    background-color: #417690;
+    
+}
+
+.header a
+{
+    text-decoration: none;
+    color: black;
+}
+
+#login_form
+{
+    padding: 10px;
+    margin: 2rem;
+}
+.form-row
+
+{
+    margin: 10px 10px;
+}
+
+label
+{
+    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    font-weight: 400;
+}
+.form-row input
+{
+    width: 100%;
+}
+
+.form-submit
+{
+    margin: 0 auto;
+    text-align: center;
+    
+}
+input
+{
+    border: 1px solid #bbb;
+    padding: 3px 4px;
+    margin: 0 auto;
+    vertical-align: middle;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    font-size: 12px;
+    border-radius: 2px;
+}

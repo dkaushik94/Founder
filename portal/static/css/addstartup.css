@@ -1,0 +1,226 @@
+a, a:hover
+{
+    text-decoration: none !important;
+    color: black;
+}
+
+.brand-logo
+{
+    margin: 15px 40px;
+    padding-bottom: 20px;
+}
+
+.submit
+{
+    margin: 10px;
+
+}
+
+.container
+{
+    background-color: #f2f2f2;
+}
+.form
+{
+    background-color: white;
+    width: 95%;
+    height: 90%;
+    margin : 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 5px black;
+    border: 1px solid gray;
+    color: black;
+
+}
+
+form
+{
+    margin: 5% auto;
+
+}
+
+.form-heading
+{
+    font-family : Forza,Lato;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+
+label
+{
+    color:black;
+    font-size: 16px !important;
+    font-family: MuseoSans ;
+}
+
+.form-element
+{
+    margin : 50px auto !important;
+    font-family : MuseoSans;
+    max-width: 90%!important;
+}
+input{
+    height: 75px!important;
+}
+select{
+    height: 50px!important;
+}
+.form-element input 
+{   
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 16px !important;
+    width: 100%  !important;
+    height: 75px;
+    padding: 10px !important;
+}
+
+.form-element input:focus
+{
+    border: 1px solid black;
+}
+#id_startup_logo{
+    padding: 0px;
+}
+#id_startup_logo:focus
+{
+    border: none !important;
+}
+input
+{
+    outline: none !important;
+    box-sizing : none !important;
+    font-family: MuseoSans;
+}
+
+#id_background_startup_image
+{
+    cursor: pointer;
+}
+
+textarea
+{
+
+    font-size: 2rem !important;
+    padding: 5px !important;
+    width: 100% !important;
+    color:black !important;
+}
+
+textarea:focus
+{
+    outline: none;
+    color: black !important;
+    border: 1px solid black;
+}
+
+textarea:focus
+{
+    outline: none;
+    box-sizing: none;
+    color: black;
+    /*border-bottom: 2px solid grey !important;*/
+}
+
+select
+{
+    width: 20%  !important;
+    padding: 8px 5px 5px 10px !important;
+    font-family: MuseoSans  ;
+    background-color: white !important;
+    /*box-sizing: none !important;*/
+    border-radius: 2px !important;
+    font-size: 14px !important;
+    color: black !important;
+
+}
+
+#tagline_error 
+{
+
+    color: red;
+}
+
+#save
+{
+    width: 400px !important; 
+    background-color: #304574;
+    font-family : MuseoSans;
+    font-size: 20px;
+    color: white;
+}
+
+.errors
+{
+    color: red;
+}
+
+.errors li
+{
+    list-style-type: none;
+}
+.errorlist li
+{
+    list-style-type: none;
+}
+.errorlist
+{
+    color: red
+}
+.footer
+{
+    height: 50px;
+}
+input
+{
+    font-family: MuseoSans;
+}
+
+
+label
+{
+    display: inline-block !important;
+}
+#list
+{
+    display: none;
+}
+input[type='file'] {
+  color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+    content: 'Add Image';
+    display: inline-block;
+    background-color: #1762ee;
+    border-radius: 3px;
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+    color: white;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-family : MuseoSans;
+  /*text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10px;*/
+
+
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.required
+{
+    color:red;
+}

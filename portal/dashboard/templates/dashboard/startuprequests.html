@@ -1,0 +1,213 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/startuprequests.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+  <div class='padding-container-regular'>
+
+    <div class="add_new_trending_startup">
+
+      <div class="modal fade" id="myModaladdtrending" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-body">
+
+
+              <div class="ui-widget">
+              <label for="startups">Startups </label>
+                <input type="text" id="add_trending_startup">
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <table class='bordered padded-small' style='width:85%'>
+      <thead>
+        <tr>
+          <th>Startup Logo</th>
+          <th>Startup Name</th>
+          <th>Social Links</th>
+          <th>Industry</th>
+          <th>Team Size</th>
+          <th>View Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for startup  in startups %}
+        <tr class="startup">
+		<td>
+				   <a href="" data-toggle="modal" data-target="#myModal{{startup.id}}">
+				     <img src="{{startup.startup_logo}}" width="50px" height="50px">
+				   </a>
+				   <!-- Modal -->
+				   <div class="modal fade" id="myModal{{startup.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				    <div class="modal-dialog" role="document">
+				      <div class="modal-content">
+
+				        <div class="modal-body">
+				          <img src="{{startup.startup_logo}}" width="500px" height="500px">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+        </td>
+        <td class="name_of_startup">
+          			<a href="{{ startup.company_website }}" target="_blank">{{startup.name_of_startup}}</a>
+        </td>
+		<td>
+				    <span class="social-icons">
+				     <a href="{{startup.facebook_url}}" target="_blank" >
+				       <i class="fa fa-facebook-official" aria-hidden="true"></i>
+				     </a>
+				     <a href="{{startup.linkedin_url}}" target="_blank" >
+				       <i class="fa fa-linkedin" aria-hidden="true"></i>
+				     </a>
+				     <a href="{{startup.twitter_handle}}" target="_blank" >
+				       <i class="fa fa-twitter" aria-hidden="true"></i>
+				     </a>
+				   </span>
+		</td>
+		<td>
+                <span>{{startup.type_of_trade}}</span>
+        </td>
+        <td>
+                <span>{{startup.team_size}}</span>
+		</td>
+      <td>
+      <i class="fa fa-bars" aria-hidden="true" data-toggle="modal" data-target="#myModal{{startup.id}}{{startup.id}}"></i>
+       <!-- Modal -->
+       <div class="modal fade" id="myModal{{startup.id}}{{startup.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="myModalLabel">{{startup.name_of_startup}}</h2>
+            </div>
+            <div class="modal-body">
+
+              <span class="description_modal">
+               <strong>Description</strong> <br>
+               {{startup.description}}
+             </span><br>
+             <span class="location_modal">
+              <strong> Location:</strong>
+              {{startup.location}}
+            </span><br>
+            <span class="type_of_trade_modal">
+              <strong>Domain</strong>
+              {{startup.type_of_trade}}
+            </span><br>
+            <h3>Founders</h3>
+
+            {% for founder in  startup.cofounders.all %}
+            <div class="founder_details {{startup.name_of_startup}}" >
+
+              <span>
+                {{founder.first_name}} {{founder.last_name}}
+              </span><br>
+              <span>
+                {{ founder.email }}
+              </span><br>
+              <span>
+                <span class="social-icons">
+                 <a href="{{founder.facebook_url}}"  target="_blank" >
+                   <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                 </a>
+                 <a href="{{founder.linkedin_url}}" target="_blank" >
+                   <i class="fa fa-linkedin" aria-hidden="true"></i>
+                 </a>
+                 <a href="{{founder.twitter_handle}}" target="_blank" >
+                   <i class="fa fa-twitter" aria-hidden="true"></i>
+                 </a>
+               </span>
+             </span>
+           </div>
+           {% endfor %}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="/dashboard/approve/{{startup.name_of_startup}}" class="btn btn-primary">Approve</a>
+              </div>
+
+        </div>
+      </div>
+         </div>
+            </td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+
+
+
+</div>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+
+{{ block.super }} 
+
+
+<div class="footer">
+  <div>
+   <span class="goto_page">
+    <p>
+      Go to page
+    </p>   
+    <input type="number" id="go_to_page_no">
+    <input type="submit" value="Go" id="go_to_button">
+  </span>
+</div>
+
+
+{% if prev %}
+<span class="arrow-left">
+ <a href="/dashboard/startuprequests/{{prev}}" class="prev-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</span>
+{% endif%}
+
+{% if next%}
+<span class="arrow-right">
+  <a href="/dashboard/startuprequests/{{next}}" class="next_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</span>
+{% endif %}
+</div>
+
+{% endblock footer %}
+
+
+
+{% block script %}
+
+
+<script type="text/javascript">
+  $('#go_to_button').click(function(e){
+    var $page_no = $('#go_to_page_no').val();
+    console.log($page_no);
+    var url = '/dashboard/startuprequests/' +  $page_no;
+    console.log(url);
+    console.log($('#go_to_page_no').val());
+    $(location).attr('href', url);
+  });
+</script>
+{% endblock script %}
+

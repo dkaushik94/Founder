@@ -1,0 +1,199 @@
+{% extends "dashboard/base.html" %}
+{% load staticfiles %}
+{% block head %}
+{{ block.super }}
+{% block title %}
+<title>Founder|Add Founder</title>
+{% endblock %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/addfounder.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/addfounder.css' %}">
+<script type="text/javascript">
+
+
+  function handleFileSelect() {
+    var files = $('#id_image')[0].files;
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = 
+          [
+
+          '<img style="height: 75px;  margin: 5px" src="', 
+          e.target.result,
+          '" title="', escape(theFile.name), 
+          '"/>'
+          ].join('');
+          $('#list').show();
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+
+</script>
+{% endblock head %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='padding-container-regular'>
+
+        <div class="row">
+            <div class="row-md-12">
+              <h2 class="center font-prop" style="text-align:center;">
+                    ADD FOUNDER
+              </h2>
+            <form  enctype="multipart/form-data" method="POST" action="">
+            {% csrf_token %}
+        
+        <div id="firstName" class="row form-element" >
+          <label id="label_first_name">First Name</label>
+          <span class="required">*</span>
+          <div class="input">
+            <input type="text" id="id_first_name" name="first_name">
+          </div>
+             
+          {{form.first_name.errors}}
+        </div>
+        <div id="lastName" class="row form-element">
+          <label>Last Name</label>
+          <div class="input">
+            <input type="text" id="id_last_name"  name = "last_name"/>
+          </div>
+            
+          {{form.last_name.errors}}
+        </div>
+        <div id="email" class=" row form-element">
+          <label>Email</label> <span class="required">*</span>
+          <div  class="input">
+            <input type="text" id="id_email" name="email" />
+          </div>
+          {{form.email.errors}}
+        </div>
+        <div id="image" class="row form-element">
+          <label>Image</label> <span class="required">*</span>
+          <div>
+            <input id="id_image"  class="custom-file-input" name = "image" type="file"
+             onchange="handleFileSelect()" />
+            <output id="list"></output>
+          </div>
+             
+          {{form.image.errors}}
+        </div>
+        <div id="linkedin" class="row form-element" >
+          <label>Linkedin Url</label>
+          <div  class="input">
+            <input type="url" id="id_linkedin_url" name="linkedin_url"  placeholder="Use https"/>
+          </div>
+          {{form.linkedin_url.errors}}
+        </div>
+        <div id="facebook" class="row form-element" >
+          <label>Facebook Url</label>
+          <div  class="input">
+            <input type = "url" id="id_facebook_url" name="facebook_url" placeholder="Use https" />
+          </div>
+          {{form.facebook_url.errors}}
+        </div>
+
+        <div id="twitter" class="row form-element" >
+          <label>Twitter Handle</label>
+          <div class="input">
+            <input type="url"  id="id_twitter_handle" name="twitter_handle" placeholder="Use https" />
+          </div>
+          {{form.titter_handle.errors}}
+        </div>
+        <div id="startup" class="row form-element" >
+          <label>Startup</label> <span class="required">*</span>
+
+          <div>
+            {{form.startup}}
+            <!-- <select name="startup" id="id_startup">
+              {% for startup in form.startup.field.queryset%}
+              <option>
+                {{startup.name_of_startup}}
+              </option>
+              {% endfor %}
+            </select> -->
+          </div>
+          {{form.startup.errors}}
+        </div>
+
+
+           <div id="about" class="row form-element" >
+            <label>About</label>
+            <div class="input">
+              <textarea rows="5" id="id_about" name="about"></textarea>
+
+                {{form.about.errors}}
+            </div>
+          </div>
+
+        <div id="add_founder" class="row form-element">
+          <label>Add Another founder</label>
+          <div id="add_another_founder_checkbox">
+            <input id="id_add_another_founder" name="add_another_founder" type="checkbox">
+          </div>
+        </div>
+        <div id="buttons" class="row form-element" >
+          <input type="submit" value="Save " class="btn btn-submit"  id="save"  />
+          <input type="submit" value="Add Another Founder " class="btn right submit" id="add" />
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+</div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+{{block.super}}
+<script type="text/javascript">
+  $(function(){
+
+
+    $(':checkbox').change(function() {
+
+      if ($('#id_add_another_founder').is(':checked')) {
+        $('#add').show();
+        $('#save').hide();
+      }
+      else {
+        $('#add').hide();
+        $('#save').show();
+      }
+    });
+
+  });
+</script>
+<!-- 
+<script type="text/javascript">
+  $( "#id_facebook_url" ).val('https://' );
+  $( "#id_linkedin_url" ).val('https://' );
+  $( "#id_twitter_handle" ).val('https://' );
+</script>
+ -->
+
+
+{% endblock script %}
+

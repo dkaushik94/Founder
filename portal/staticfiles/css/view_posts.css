@@ -1,0 +1,95 @@
+
+a, a:hover
+{
+    text-decoration: none;
+    color: black;
+}
+
+body
+{
+    font-family : MuseoSans;
+}
+#post_headline
+{
+    width: 20%;
+}
+
+#post_text_th
+{
+    width: 50%;
+}
+#posted_by_th
+{
+    width: 15%
+}
+#view_details_th
+{
+    width:10%;
+}
+th
+{
+    text-align: center;;
+    font-size: 22px;
+}
+.posted_by
+{
+    text-align: center;
+}
+p
+{
+    padding: 20px;
+}
+.details
+{
+    text-align: center;
+    font-size: 22px;
+}
+
+.footer 
+{
+    height: 100px;
+    margin-left: 10%;
+    width: 80%
+}
+
+.arrow-left,  .arrow-right
+{
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.fa
+{
+    font-size: 20px;
+}
+
+.arrow-right
+{
+    float: right;
+}
+.arrow_left
+{
+    float: left;
+}
+
+.goto_page p
+{
+    display: inline-block;
+
+}
+
+.goto_page
+ {
+    display: inline-block;
+    margin: 0 30%;
+ }
+
+
+.fa-bars
+{
+    cursor: pointer;
+}
+.modal
+{
+    width: 100%;
+    height: 100%;
+}
