@@ -1,4 +1,4 @@
-Info about the project:
+# Info about the project:
 
 This is the project for the startup portal.
 
@@ -20,22 +20,21 @@ Initial Setup Guidelines post cloning repository:
 
 4.Runserver and check if your admin site is functioning properly or not.
 
---If any package is being installed by you which will be needed by other contributors,please run the command 'pip freeze > Requirements.txt' and then push the changes--
+- If any package is being installed by you which will be needed by other contributors,please run the command 'pip freeze > Requirements.txt' and then push the changes--
 
---Note: Please make sure your have the gitignore files in your git home. Dont upload your settings.py file and other such system specific files. This will pollute the repository and create unwanted effects on every contributors machine.--  
+- Note: Please make sure your have the gitignore files in your git home. Dont upload your settings.py file and other such system specific files. This will pollute the repository and create unwanted effects on every contributors machine.--  
 
 Present contributing members:
 
--Administrators:
+## Administrators:
+
+- Grappus team
+
+- Site : www.grappus.com
+
+## Development team:
 
 
---Grappus team
+- Debojit Kaushik - (email : kaushik.debojit@gmail.com)
 
---Site : www.grappus.com
-
--Development team:
-
-
---Debojit Kaushik - (email : kaushik.debojit@gmail.com)
-
---Saksham B.M Verenkar - (email : verenkar.saksham@gmail.com)
+- Saksham B.M Verenkar - (email : verenkar.saksham@gmail.com)
